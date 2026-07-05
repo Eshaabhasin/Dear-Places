@@ -1,0 +1,1097 @@
+/* ============================================
+   LETTER WRITING & SEALING SCREEN CSS
+   ============================================ */
+
+.viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ambient warm desk background scene */
+.backgroundLayer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  filter: brightness(0.85);
+  animation: bgZoomIn 1.5s ease-out;
+}
+
+@keyframes bgZoomIn {
+  from {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.sceneVignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 30%, rgba(10, 10, 15, 0.4) 70%, rgba(10, 10, 15, 0.8) 100%);
+}
+
+/* ============ HEADER ============ */
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.headerTitle {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1.1;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.6));
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.headerSubtitle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--accent-gold-warm);
+  filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.5));
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+.headerMetaRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 2px;
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 12px;
+}
+
+.metaIcon {
+  color: var(--accent-purple);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Back Button */
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 48px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(11, 13, 28, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: slideDown 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.backButton:hover {
+  background: rgba(11, 13, 28, 0.85);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateX(-2px);
+}
+
+.backIcon {
+  color: var(--accent-purple);
+}
+
+/* ============ MAIN COLUMNS CONTAINER ============ */
+
+.mainContent {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+  bottom: 95px;
+  z-index: 5;
+  pointer-events: none;
+  /* Allows clicks to reach draggable items */
+}
+
+.draggableItem {
+  position: absolute;
+  pointer-events: auto;
+  /* Active pointer events for drag */
+  cursor: grab;
+  user-select: none;
+  transform-origin: center center;
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+  will-change: transform, left, top;
+}
+
+.draggableItem:active {
+  cursor: grabbing;
+  box-shadow: 0px 30px 80px rgba(0, 0, 0, 0.65) !important;
+  filter: brightness(1.05);
+}
+
+/* ============ LEFT COLUMN (EPHEMERA) ============ */
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 250px;
+  align-items: center;
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Polaroid Card */
+.polaroidCard {
+  width: 170px;
+  background: var(--paper-light);
+  padding: 8px 8px 12px 8px;
+  border-radius: 4px;
+  box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.45);
+  transform: rotate(-3deg);
+  transition: transform 0.3s ease;
+}
+
+.polaroidCard:hover {
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.polaroidPhoto {
+  width: 100%;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+}
+
+.polaroidCaption {
+  margin-top: 8px;
+  color: var(--ink-body);
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Metro Ticket Card */
+.ticketCard {
+  width: 160px;
+  background: #ecdcb6;
+  border: 1px dashed #bfa06a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.35);
+  transform: rotate(2deg);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: transform 0.3s ease;
+}
+
+.ticketCard:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.ticketBrand {
+  color: #3f2f1e;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.ticketType {
+  color: #7a6244;
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ticketRoute {
+  margin-top: 2px;
+  color: #4a3927;
+  font-family: var(--font-body);
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.ticketFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.ticketDate {
+  color: #7a6244;
+  font-family: var(--font-body);
+  font-size: 9px;
+}
+
+.ticketFare {
+  color: #3f2f1e;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Cafe Receipt Card */
+.receiptCard {
+  width: 160px;
+  background: #f6eed6;
+  border-radius: 4px;
+  padding: 8px 12px;
+  box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.35);
+  transform: rotate(-2deg);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.3s ease;
+}
+
+.receiptCard:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.receiptName {
+  color: #3f2f1e;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+.receiptRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.receiptItem {
+  color: var(--ink-body);
+  font-family: var(--font-body);
+  font-size: 9.5px;
+}
+
+.receiptPrice {
+  color: #3f2f1e;
+  font-family: var(--font-body);
+  font-size: 9.5px;
+}
+
+.receiptDivider {
+  width: 100%;
+  height: 1px;
+  background: #cbb488;
+  margin: 4px 0;
+}
+
+.receiptTotalLabel {
+  color: #3f2f1e;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.receiptTotalValue {
+  color: #3f2f1e;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.receiptThanks {
+  color: #7a6244;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* ============ CENTER COLUMN (LETTER / ENVELOPE) ============ */
+
+.centerColumn {
+  width: 553px;
+  min-height: 590px;
+  position: relative;
+  perspective: 1000px;
+  /* For sealing flip animations */
+}
+
+/* The Open Letter Paper Panel */
+.letterPaper {
+  width: 100%;
+  height: 100%;
+  min-height: 590px;
+  background: var(--paper);
+  border: 1px solid var(--paper-border);
+  border-radius: 8px;
+  padding: 44px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0px 40px 90px rgba(50, 32, 16, 0.5),
+    inset 0px 0px 70px rgba(150, 110, 60, 0.28);
+  transform: rotate(-1deg);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.letterPaper.sealing {
+  transform: rotateY(180deg) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.letterDateLine {
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-style: italic;
+}
+
+.letterDateLineInput {
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-style: italic;
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+/* Editable Greetings & Signature */
+.letterGreeting {
+  color: var(--ink-dark);
+  font-family: var(--font-handwriting) !important;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1;
+  outline: none;
+}
+
+.letterBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.letterTextArea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: var(--font-handwriting) !important;
+  font-size: 25px;
+  line-height: 1.5;
+  color: var(--ink-body);
+  flex: 1;
+  min-height: 180px;
+}
+
+.letterSignature {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.signatureYours {
+  color: var(--ink-body);
+  font-family: var(--font-handwriting) !important;
+  font-size: 25px;
+}
+
+.signatureInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-handwriting) !important;
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--ink-dark);
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Wax Seal on Open Letter (Bottom Right corner) */
+.letterWaxSeal {
+  position: absolute;
+  right: 40px;
+  bottom: 34px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(180, 84, 94) 50%, rgb(120, 40, 52) 100%);
+  box-shadow: 0px 10px 22px rgba(80, 20, 30, 0.45),
+    inset 0px 2px 6px rgba(255, 190, 190, 0.4);
+  transform: rotate(-8deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.letterWaxSeal:hover {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.waxSealRing {
+  width: 56px;
+  height: 56px;
+  border: 1px dashed rgba(227, 150, 158, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waxSealIcon {
+  width: 28px;
+  height: 28px;
+  color: rgb(78, 24, 34);
+}
+
+/* Brass Clip holding the paper */
+.brassClip {
+  position: absolute;
+  left: 80%;
+  top: -16px;
+  width: 56px;
+  height: 30px;
+  background: linear-gradient(rgb(224, 186, 116) 0%, rgb(150, 110, 58) 100%);
+  border: 1px solid #eccd8c;
+  border-radius: 3px 3px 7px 7px;
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  z-index: 12;
+}
+
+.clipGroove {
+  width: 38px;
+  height: 3px;
+  background: #8a6a2e;
+  border-radius: 2px;
+  margin-top: 7px;
+}
+
+/* Lavender sprigs */
+.lavenderRight {
+  position: absolute;
+  top: 24px;
+  right: 26px;
+  width: 64px;
+  height: 132px;
+  transform: rotate(24deg);
+  pointer-events: none;
+}
+
+.lavenderLeft {
+  position: absolute;
+  top: 58px;
+  left: 20px;
+  width: 36px;
+  height: 84px;
+  transform: rotate(-20deg);
+  pointer-events: none;
+}
+
+/* ============ SEALED ENVELOPE PANEL ============ */
+
+.sealedEnvelope {
+  width: 100%;
+  height: 100%;
+  min-height: 580px;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgb(226, 207, 165) 0%, rgb(204, 180, 130) 100%);
+  border: 1px solid #c9ad78;
+  border-radius: 8px;
+  box-shadow: 0px 40px 90px rgba(50, 32, 16, 0.5),
+    inset 0px 0px 70px rgba(150, 110, 60, 0.25);
+  transform: rotate(-1deg);
+  overflow: hidden;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: rotateY(-180deg) scale(0.9);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.sealedEnvelope.active {
+  opacity: 1;
+  transform: rotateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* The Envelope folds using CSS clip-path */
+.envelopeFlap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 318px;
+  background: linear-gradient(160deg, rgb(212, 191, 145) 0%, rgb(188, 162, 112) 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1px solid #b89a63;
+  box-shadow: 0px 8px 20px rgba(90, 62, 28, 0.28);
+  z-index: 10;
+}
+
+.envelopePocket {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(rgb(214, 193, 148) 0%, rgb(196, 170, 118) 100%);
+  clip-path: polygon(0 100%, 100% 100%, 50% 18%);
+  box-shadow: inset 0px 2px 10px rgba(120, 88, 44, 0.2);
+  z-index: 9;
+}
+
+/* Floating Sealed text */
+.sealedCaption {
+  position: absolute;
+  left: 48px;
+  bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 20;
+}
+
+.sealedCaptionLabel {
+  color: #6e4c26;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+
+.sealedCaptionDate {
+  color: #8a6c3e;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Large Wax Seal Pressed in the center */
+.centerWaxSeal {
+  position: absolute;
+  width: 108px;
+  height: 108px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(182, 86, 96) 45%, rgb(118, 38, 50) 100%);
+  box-shadow: 0px 16px 38px rgba(80, 20, 30, 0.6),
+    inset 0px 3px 9px rgba(255, 190, 190, 0.5),
+    0px 0px 0px 11px rgba(182, 86, 96, 0.16);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: sealStamp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s both;
+}
+
+@keyframes sealStamp {
+  from {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+    filter: blur(4px);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.centerWaxSealRing {
+  width: 82px;
+  height: 82px;
+  border: 1px dashed #e8a6ad;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerWaxSealIcon {
+  width: 44px;
+  height: 44px;
+  color: rgb(78, 24, 34);
+}
+
+/* ============ RIGHT COLUMN (STAMPS) ============ */
+
+.rightColumn {
+  width: 356px;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stampsPanel {
+  width: 260px;
+  background: var(--stamp-bg);
+  border: 1px solid #d3bd91;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5);
+  transform: rotate(1deg);
+}
+
+.stampsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.stampsTitle {
+  color: #3f2f1e;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.stampsProgress {
+  color: #8a6d3f;
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+
+.stampsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.stampItem {
+  width: 70px;
+  background: var(--paper-light);
+  padding: 4px 4px 5px 4px;
+  border-radius: 3px;
+  box-shadow: 0px 4px 10px rgba(40, 24, 10, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stampItem:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.stampItem:nth-child(odd) {
+  transform: rotate(-4deg);
+}
+
+.stampItem:nth-child(3n) {
+  transform: rotate(-2deg);
+}
+
+.stampItem:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+  box-shadow: 0px 8px 16px rgba(40, 24, 10, 0.35);
+  z-index: 10;
+}
+
+.stampPhoto {
+  width: 100%;
+  height: 52px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1px;
+}
+
+.stampName {
+  color: var(--ink-dark);
+  font-family: var(--font-body);
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ============ VINTAGE POSTCARD CARD ============ */
+.postcardCard {
+  width: 240px;
+  height: 155px;
+  background: #fdfaf2;
+  border: 1px solid #e3d2b2;
+  box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.45);
+  border-radius: 4px;
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  transition: transform 0.3s ease;
+}
+
+.postcardCard:hover {
+  transform: scale(1.02);
+}
+
+.postcardLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px dashed #e3d2b2;
+  padding-right: 6px;
+}
+
+.postcardText {
+  font-family: var(--font-handwriting);
+  font-size: 15px;
+  color: var(--ink-body);
+  line-height: 1.3;
+  flex: 1;
+}
+
+.postcardRight {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.postcardStampBox {
+  width: 32px;
+  height: 40px;
+  border: 1px dashed #cbb488;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6px;
+  color: #cbb488;
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+.postcardStampImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.postcardAddressLines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.postcardLine {
+  width: 100%;
+  height: 1px;
+  background: #d8c193;
+}
+
+/* ============ FOLDING FLAP SHEETS (3D TRANSITION) ============ */
+.foldingContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  perspective: 1500px;
+  pointer-events: none;
+}
+
+.foldingFlapTop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 33.33%;
+  background: var(--paper);
+  border: 1px solid var(--paper-border);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  transform-origin: bottom center;
+  box-shadow: inset 0px 5px 20px rgba(150, 110, 60, 0.15);
+  transition: transform 0.6s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.foldingFlapTop.folded {
+  transform: rotateX(-179deg);
+}
+
+.foldingFlapBottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 33.33%;
+  background: var(--paper);
+  border: 1px solid var(--paper-border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  transform-origin: top center;
+  box-shadow: inset 0px -5px 20px rgba(150, 110, 60, 0.15);
+  transition: transform 0.6s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.foldingFlapBottom.folded {
+  transform: rotateX(179deg);
+}
+
+.foldingFlapMiddle {
+  position: absolute;
+  left: 0;
+  top: 33.33%;
+  width: 100%;
+  height: 33.34%;
+  background: var(--paper);
+  border: 1px solid var(--paper-border);
+  box-shadow: inset 0px 0px 30px rgba(150, 110, 60, 0.2);
+}
+
+/* ============ SIMPLIFIED UNIFIED BOTTOM TOOLBAR ============ */
+.bottomToolbar {
+  position: absolute;
+  bottom: 24px;
+  right: 22px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  background: rgba(30, 26, 20, 0.82);
+  border: 1px solid rgba(232, 211, 165, 0.18);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-radius: 24px;
+  padding: 6px 10px;
+  box-shadow: 0px 24px 60px rgba(0, 0, 0, 0.65);
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.unifiedTool {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: none;
+  background: transparent;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.unifiedTool:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.unifiedToolIcon {
+  color: var(--accent-purple);
+  width: 15px;
+  height: 15px;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Unified Seal Button */
+.sealButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 16px;
+  background: linear-gradient(135deg, rgb(150, 54, 68) 0%, rgb(184, 104, 62) 100%);
+  box-shadow: 0px 10px 24px rgba(140, 54, 60, 0.4),
+    inset 0px 1px 0px rgba(255, 220, 200, 0.25);
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #fbeede;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sealButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 12px 28px rgba(140, 54, 60, 0.55);
+}
+
+.sealEmblem {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(158, 64, 76) 50%, rgb(96, 28, 40) 100%);
+  border: 1px solid rgba(227, 150, 158, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sealEmblemIcon {
+  width: 13px;
+  height: 13px;
+  color: rgb(63, 18, 27);
+}
+
+/* Green Sealed state button */
+.sealButton.sealed {
+  background: linear-gradient(135deg, #4d6d3d 0%, #688a52 100%);
+  box-shadow: 0px 10px 24px rgba(77, 109, 61, 0.4),
+    inset 0px 1px 0px rgba(200, 255, 200, 0.25);
+  cursor: pointer;
+  /* Allow unsealing from toolbar button too */
+}
+
+.sealButton.sealed .sealEmblem {
+  background: radial-gradient(circle, #557b44 50%, #36512a 100%);
+  border-color: rgba(180, 255, 180, 0.5);
+}
+
+.sealButton.sealed .sealEmblemIcon {
+  color: #1e3612;
+}
+
+/* Custom Item Delete Button */
+.deleteButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #4e1822;
+  color: white;
+  border: 1px solid #eccd8c;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  pointer-events: auto;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: #782834;
+}
+
+/* Stamps Panel Drag Header */
+.stampsDragHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #d3bd91;
+}

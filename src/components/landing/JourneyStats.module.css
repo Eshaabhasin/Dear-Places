@@ -1,0 +1,108 @@
+.container {
+  position: absolute;
+  right: 60px;
+  /* Positioned exactly where the flight path arrow ends */
+  top: 210px;
+  /* Positioned exactly where the flight path arrow ends */
+  z-index: 10;
+  animation: fadeInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  opacity: 0;
+}
+
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.statsCard {
+  background: rgba(255, 255, 255, 0.06);
+  /* bg-[#ffffff10] */
+  backdrop-filter: blur(40px);
+  /* backdrop-blur-2xl */
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  /* border-[#ffffff24] */
+  border-radius: 24px;
+  /* rounded-3xl */
+  padding: 18px;
+  /* p-[18px] */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  /* gap-[18px] */
+  box-shadow: 0px 24px 60px rgba(0, 0, 0, 0.5);
+  /* shadow-[0px_24px_60px_rgba(0,0,0,0.5)] */
+  width: 184px;
+  /* w-[184px] */
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* gap-3 */
+  opacity: 0;
+  animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  /* size-[17px] */
+  height: 17px;
+  flex-shrink: 0;
+  color: #a88cff;
+  /* text-[#a88cff] */
+}
+
+.statMeta {
+  display: flex;
+  flex-direction: column;
+  leading-none: 1;
+}
+
+.statValue {
+  font-family: var(--font-body);
+  font-size: 16px;
+  /* text-base */
+  font-weight: 600;
+  /* font-semibold */
+  color: #f5e8d8;
+  /* text-[#f5e8d8] */
+  line-height: 1.25;
+  /* leading-tight */
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  /* text-[11px] */
+  font-weight: 300;
+  /* font-light */
+  color: rgba(199, 190, 224, 0.64);
+  /* text-[#c7bee0a3] */
+  line-height: 1.25;
+  /* leading-tight */
+}

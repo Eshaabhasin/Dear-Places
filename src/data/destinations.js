@@ -1,0 +1,166 @@
+import { images } from './images';
+
+export const destinations = [
+  {
+    slug: 'new-delhi',
+    name: 'New Delhi',
+    fullName: 'New Delhi, India',
+    country: 'India',
+    dates: 'Apr 14 – Apr 22, 2025',
+    shortDate: 'Apr 2025',
+    coords: [28.6139, 77.2090],
+    photos: 3,
+    letters: 3,
+    postcards: 4,
+    memories: 12,
+    background: images.backgrounds.newDelhiMiniature,
+    journeyCard: images.journeyCards.newDelhi,
+    landmarks: [
+      { name: 'India Gate', icon: 'camera', memories: 3, position: { top: '26%', left: '52%' } },
+      { name: "Humayun's Tomb", icon: 'ticket', memories: 2, position: { top: '24%', left: '40%' } },
+      { name: 'Red Fort', icon: 'mail', memories: 2, position: { top: '25%', left: '69%' } },
+      { name: 'Connaught Place', icon: 'music', memories: 4, position: { top: '60%', left: '38%' } },
+    ],
+  },
+  {
+    slug: 'paris',
+    name: 'Paris',
+    fullName: 'Paris, France',
+    country: 'France',
+    dates: 'Jun 10 – Jun 16, 2025',
+    shortDate: 'Jun 2025',
+    coords: [48.8566, 2.3522],
+    photos: 3,
+    letters: 2,
+    postcards: 1,
+    memories: 12,
+    background: images.backgrounds.parisMiniature,
+    journeyCard: images.backgrounds.parisMiniature,
+    landmarks: [
+      { name: 'Eiffel Tower', icon: 'camera', memories: 5, position: { top: '28%', left: '55%' } },
+      { name: 'Sacré-Cœur', icon: 'music', memories: 4, position: { top: '26%', left: '80%' } },
+      { name: 'Louvre Museum', icon: 'ticket', memories: 3, position: { top: '54%', left: '83%' } },
+    ],
+  },
+  {
+    slug: 'tokyo',
+    name: 'Tokyo',
+    fullName: 'Tokyo, Japan',
+    country: 'Japan',
+    dates: 'Apr 3 – Apr 12, 2025',
+    shortDate: 'Apr 2025',
+    coords: [35.6762, 139.6503],
+    photos: 3,
+    letters: 2,
+    postcards: 1,
+    memories: 12,
+    background: images.backgrounds.tokyoMiniature,
+    journeyCard: images.journeyCards.kyoto,
+    landmarks: [
+      { name: 'Tokyo Tower', icon: 'camera', memories: 5, position: { top: '26%', left: '54%' } },
+      { name: 'Senso-ji Temple', icon: 'ticket', memories: 3, position: { top: '46%', left: '32%' } },
+      { name: 'Shibuya Crossing', icon: 'compass', memories: 4, position: { top: '68%', left: '76%' } },
+    ],
+  },
+  {
+    slug: 'iceland',
+    name: 'Iceland',
+    fullName: 'Iceland',
+    country: 'Iceland',
+    dates: 'Mar 2025',
+    shortDate: 'Mar 2025',
+    coords: [64.9631, -19.0208],
+    photos: 5,
+    letters: 1,
+    postcards: 2,
+    memories: 8,
+    background: images.backgrounds.atlasGlobeScene,
+    journeyCard: images.journeyCards.reykjavik,
+    landmarks: [],
+  },
+  {
+    slug: 'bali',
+    name: 'Bali',
+    fullName: 'Bali, Indonesia',
+    country: 'Indonesia',
+    dates: 'Dec 2025',
+    shortDate: 'Dec 2025',
+    coords: [-8.3405, 115.0920],
+    photos: 4,
+    letters: 2,
+    postcards: 1,
+    memories: 7,
+    background: images.backgrounds.atlasGlobeScene,
+    journeyCard: images.journeyCards.florence,
+    landmarks: [],
+  },
+  {
+    slug: 'new-york',
+    name: 'New York',
+    fullName: 'New York, USA',
+    country: 'USA',
+    dates: 'May 2026',
+    shortDate: 'May 2026',
+    coords: [40.7128, -74.0060],
+    photos: 6,
+    letters: 3,
+    postcards: 2,
+    memories: 11,
+    background: images.backgrounds.atlasGlobeScene,
+    journeyCard: images.journeyCards.lisbon,
+    landmarks: [],
+  },
+  {
+    slug: 'cape-town',
+    name: 'Cape Town',
+    fullName: 'Cape Town, South Africa',
+    country: 'South Africa',
+    dates: 'Feb 2026',
+    shortDate: 'Feb 2026',
+    coords: [-33.9249, 18.4241],
+    photos: 4,
+    letters: 1,
+    postcards: 3,
+    memories: 8,
+    background: images.backgrounds.atlasGlobeScene,
+    journeyCard: images.journeyCards.marrakech,
+    landmarks: [],
+  },
+];
+
+// Globe markers for the Atlas page
+export const globeMarkers = destinations.map(d => ({
+  slug: d.slug,
+  name: d.name,
+  date: d.shortDate,
+  lat: d.coords[0],
+  lng: d.coords[1],
+}));
+
+// Recent chapters for the Atlas page sidebar
+export const recentChapters = [
+  { name: 'Kyoto, Japan', date: 'Apr 2025', thumb: images.chapters.kyoto, slug: 'tokyo' },
+  { name: 'Paris, France', date: 'Jun 2025', thumb: images.chapters.paris, slug: 'paris' },
+  { name: 'Iceland', date: 'Mar 2025', thumb: images.chapters.iceland, slug: 'iceland' },
+];
+
+// Journey stats for the landing page
+export const journeyStats = {
+  trips: 23,
+  letters: 87,
+  photos: 156,
+  postcards: 42,
+  countries: 11,
+};
+
+// Recent journeys for Memory Tree page
+export const recentJourneys = [
+  { name: 'New Delhi', meta: 'India · April 2025', image: images.journeyCards.newDelhi },
+  { name: 'Kyoto', meta: 'Japan · Nov 2025', image: images.journeyCards.kyoto },
+  { name: 'Paris', meta: 'France · Jun 2025', image: images.chapters.paris },
+  { name: 'Reykjavik', meta: 'Iceland · Feb 2026', image: images.journeyCards.reykjavik },
+  { name: 'Bali', meta: 'Indonesia · Dec 2025', image: images.journeyCards.florence },
+  { name: 'Marrakech', meta: 'Morocco · Dec 2026', image: images.journeyCards.marrakech },
+];
+
+export default destinations;
