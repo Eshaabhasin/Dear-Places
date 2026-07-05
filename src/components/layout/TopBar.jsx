@@ -43,7 +43,7 @@ export default function TopBar({ showSearch = true }) {
           </div>
           <div className={styles.profileText}>
             <span className={styles.profileWelcome}>Welcome back,</span>
-            <span className={styles.profileName}>Eshaa</span>
+            <span className={styles.profileName}>Traveller</span>
           </div>
           <ChevronDown size={16} className={styles.chevronIcon} />
         </div>

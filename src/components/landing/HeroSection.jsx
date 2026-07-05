@@ -40,7 +40,7 @@ export default function HeroSection() {
           </div>
           <div className={styles.welcomeTextBlock}>
             <span className={styles.welcomeGreeting}>Welcome back,</span>
-            <span className={styles.welcomeName}>Eshaa</span>
+            <span className={styles.welcomeName}>Traveller</span>
           </div>
         </div>
       </header>

@@ -180,11 +180,11 @@ export default function MemoryTreeArchive() {
         try {
           const items = JSON.parse(savedPositions);
           canvasItems = items;
-          
+
           // Filter out expired/temporary blob: URLs
           const photoItems = items.filter(i => i.type === 'photo' && i.photo && !i.photo.startsWith('blob:'));
           const postcardItems = items.filter(i => i.type === 'postcard' && i.stamp && !i.stamp.startsWith('blob:'));
-          
+
           // Use custom uploaded photo if available
           const customUploaded = photoItems.find(i => i.id.startsWith('polaroid-custom-'));
           if (customUploaded) {
@@ -235,7 +235,7 @@ export default function MemoryTreeArchive() {
         const key = localStorage.key(i);
         if (key && key.startsWith('sealed_memory_')) {
           const presetKey = key.replace('sealed_memory_', '');
-          
+
           // Check if this is a standard preset key
           const isStandard = Object.values(countryPresets).some(p => p.key === presetKey);
           if (!isStandard) {
@@ -244,23 +244,23 @@ export default function MemoryTreeArchive() {
             const savedSig = localStorage.getItem(`memory_sig_${presetKey}`) || 'Explorer';
             const savedLocationHeader = localStorage.getItem(`memory_location_header_${presetKey}`) || 'Custom Destination';
             const savedPositions = localStorage.getItem(`memory_positions_${presetKey}`);
-            
+
             // Skip empty/untouched custom memories to prevent cluttering and duplicates
             const isDefaultGreeting = !savedGreeting || savedGreeting === 'Dear Place,';
             const isDefaultBody = !savedBody || savedBody.includes('Write your general travel memory here...') || savedBody.trim() === '';
             if (isDefaultGreeting && isDefaultBody) {
               continue;
             }
-            
+
             let photo = images.backgrounds.landingGlobeDesk; // Neutral default thumbnail
             let caption = 'Captured moment';
             let canvasItems = null;
-            
+
             if (savedPositions) {
               try {
                 const items = JSON.parse(savedPositions);
                 canvasItems = items;
-                
+
                 const photoItems = items.filter(item => item.type === 'photo' && item.photo && !item.photo.startsWith('blob:'));
                 const customUploaded = photoItems.find(item => item.id.startsWith('polaroid-custom-'));
                 if (customUploaded) {
@@ -274,9 +274,9 @@ export default function MemoryTreeArchive() {
                 console.error(e);
               }
             }
-            
+
             const placeName = extractLocationFromGreeting(savedGreeting, savedLocationHeader.split('-')[0].trim());
-            
+
             customMemList.push({
               key: presetKey,
               citySlug: 'custom-city',
@@ -330,7 +330,7 @@ export default function MemoryTreeArchive() {
   const handleToggleSeal = () => {
     if (!selectedMemory) return;
     const nextSealed = !selectedMemory.isSealed;
-    
+
     // Save to localStorage
     if (nextSealed) {
       localStorage.setItem(`sealed_memory_${selectedMemory.key}`, 'true');
@@ -348,11 +348,11 @@ export default function MemoryTreeArchive() {
         }
       }));
     } else {
-      setCustomMemories((prev) => 
+      setCustomMemories((prev) =>
         prev.map(m => m.key === selectedMemory.key ? { ...m, isSealed: nextSealed } : m)
       );
     }
-    
+
     setSelectedMemory((prev) => ({
       ...prev,
       isSealed: nextSealed
@@ -400,7 +400,7 @@ export default function MemoryTreeArchive() {
       localStorage.removeItem('memory_sig_custom-general');
       localStorage.removeItem('memory_location_header_custom-general');
       localStorage.removeItem('memory_positions_custom-general');
-      
+
       localStorage.removeItem('sealed_memory_general');
       localStorage.removeItem('memory_greeting_general');
       localStorage.removeItem('memory_body_general');
@@ -450,7 +450,7 @@ export default function MemoryTreeArchive() {
           </div>
           <div className={styles.welcomeTextBlock}>
             <span className={styles.welcomeGreeting}>Welcome back,</span>
-            <span className={styles.welcomeName}>Eshaa</span>
+            <span className={styles.welcomeName}>Traveller</span>
           </div>
         </div>
       </header>
@@ -460,8 +460,8 @@ export default function MemoryTreeArchive() {
         <h1 className={styles.heroHeadline}>The Memory Tree</h1>
         <p className={styles.heroSubtitle}>Every place you loved still grows here.</p>
         {customMemories.length > 0 && (
-          <button 
-            onClick={handleClearAllCustomMemories} 
+          <button
+            onClick={handleClearAllCustomMemories}
             style={{ marginTop: '12px', background: 'rgba(255, 69, 58, 0.12)', border: '1px solid rgba(255, 69, 58, 0.25)', color: '#ff453a', padding: '6px 14px', borderRadius: '12px', fontSize: '12px', fontFamily: 'var(--font-body)', fontWeight: '500', cursor: 'pointer', transition: 'all 0.3s ease' }}
           >
             Clear All Custom Memories
@@ -868,7 +868,7 @@ export default function MemoryTreeArchive() {
                 <Edit3 size={14} />
                 <span>Edit Workspace</span>
               </Link>
-              
+
               <button className={styles.unsealButton} onClick={handleToggleSeal}>
                 {selectedMemory.isSealed ? (
                   <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -884,8 +884,8 @@ export default function MemoryTreeArchive() {
               </button>
 
               {selectedMemory.isCustom && (
-                <button 
-                  className={styles.unsealButton} 
+                <button
+                  className={styles.unsealButton}
                   onClick={() => handleDeleteCustomMemory(selectedMemory.key)}
                   style={{ backgroundColor: 'rgba(255, 69, 58, 0.15)', borderColor: 'rgba(255, 69, 58, 0.3)', color: '#ff453a' }}
                 >
